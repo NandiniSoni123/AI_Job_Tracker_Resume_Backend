@@ -10,27 +10,20 @@ dotenv.config();
 
 const app = express();
 
-// middlewares
 app.use(express.json());
 app.use(cors({
-  origin: "*", // ✅ Vercel ke liye
+  origin: "*", 
   credentials: true
 }));
-
-// db connect (IMPORTANT: listen ke andar nahi)
 connectDb();
 
-// test route
 app.get("/", (req, res) => {
   res.send("Backend running on Vercel 🚀");
 });
 
-// routes
 app.use("/api/user", UserRoutes);
 app.use("/api/resume", ResumeRoutes);
 
-// ❌ REMOVE app.listen
-// ✅ EXPORT app
 export default app;
 
 
@@ -140,20 +133,4 @@ export default app;
 
 
 
-// const express = require ('express');
 
-// const app = express();
-// const PORT = 4000;
-
-// require('./conn');
-// app.use(express.json());
-
-// const UserRoutes = require('./Routes/user');
-// const ResumeRoutes = require('./Routes/resume');
-
-// app.use('/api/user',UserRoutes)
-// app.use('/api/resume',ResumeRoutes);
-
-// app.listen(PORT,()=>{
-//     console.log("Backend created successfully on port",PORT);
-// })
